@@ -30,22 +30,30 @@
 
 ```mermaid
 graph TD
-    User((User)) -->|Query, Search Mode, Session ID| Router{Intent Router}
-    Router -->|NEW_TOPIC| Planner[Task Planner]
-    Router -->|REFINE| Refiner[Content Refiner]
-    
-    Planner --> Researcher[Deep Researcher]
-    Researcher -->|Relevance Check: Fail| Grader{Doc Relevant?}
-    Grader -->|No (Doc Only)| Stop[" Halt & Warn User"]
-    Grader -->|No (Hybrid)| Web[" Fallback to Web Search"]
-    Grader -->|Yes| Writer[Content Generation]
-    Web --> Writer
-    
-    Writer --> Reviewer{Quality Reviewer}
-    Reviewer -->|FAIL| Planner
-    Reviewer -->|PASS| End((END))
-    
-    Refiner --> End
+
+User((User)) -->|Query, Search Mode, Session ID| Router{Intent Router}
+
+Router -->|NEW_TOPIC| Planner[Task Planner]
+Router -->|REFINE| Refiner[Content Refiner]
+
+Planner --> Researcher[Deep Researcher]
+Researcher -->|Relevance Check: Fail| Grader{Doc Relevant?}
+
+Grader -->|No (Doc Only)| stop_node
+Grader -->|No (Hybrid)| web_node
+Grader -->|Yes| Writer[Content Generation]
+
+stop_node[Halt and warn user]
+web_node[Fallback to web search]
+
+web_node --> Writer
+
+Writer --> Reviewer[Quality Reviewer]
+Reviewer -->|FAIL| Planner
+Reviewer -->|PASS| End((END))
+
+Refiner --> End
+
 ```
 
 ---
