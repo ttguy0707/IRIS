@@ -36,8 +36,8 @@ graph TD
     
     Planner --> Researcher[Deep Researcher]
     Researcher -->|Relevance Check: Fail| Grader{Doc Relevant?}
-    Grader -->|No (Doc Only)| Stop[🛑 Halt & Warn User]
-    Grader -->|No (Hybrid)| Web[🌐 Fallback to Web Search]
+    Grader -->|No (Doc Only)| Stop["🛑 Halt & Warn User"]
+    Grader -->|No (Hybrid)| Web["🌐 Fallback to Web Search"]
     Grader -->|Yes| Writer[Content Generation]
     Web --> Writer
     
