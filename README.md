@@ -28,6 +28,7 @@
 
 ## 🏗️ 系统架构图 (Architecture)
 
+```text
 User Input
     ↓
 Intent Router
@@ -52,6 +53,7 @@ Relevance Grader (Document Check)
             Quality Reviewer
                     ├── FAIL → Back to Planner (Self-Correction Loop)
                     └── PASS → Final Output
+```
 
 ---
 
