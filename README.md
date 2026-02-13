@@ -71,7 +71,7 @@ graph TD
 
 ### 1. 克隆项目
 ```bash
-git clone https://github.com/yourusername/IRIS.git
+git clone https://github.com/ttguy0707/IRIS.git
 cd IRIS
 ```
 
