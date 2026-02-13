@@ -28,33 +28,30 @@
 
 ## 🏗️ 系统架构图 (Architecture)
 
-```mermaid
-graph TD
+User Input
+    ↓
+Intent Router
+    ├── NEW_TOPIC → Task Planner
+    └── REFINE    → Content Refiner → Final Output
 
-  user((User)) -->|Query, Search Mode, Session ID| router{Intent Router}
-
-  router -->|NEW_TOPIC| planner[Task Planner]
-  router -->|REFINE| refiner[Content Refiner]
-
-  planner --> researcher[Deep Researcher]
-  researcher -->|Relevance Check: Fail| grader{Doc Relevant?}
-
-  grader -->|No (Doc Only)| stop_node
-  grader -->|No (Hybrid)| web_node
-  grader -->|Yes| writer[Content Generation]
-
-  stop_node[Halt and warn user]
-  web_node[Fallback to web search]
-
-  web_node --> writer
-
-  writer --> reviewer[Quality Reviewer]
-  reviewer -->|FAIL| planner
-  reviewer -->|PASS| end_node((END))
-
-  refiner --> end_node
-
-```
+Task Planner
+    ↓
+Deep Researcher
+    ↓
+Relevance Grader (Document Check)
+    ├── Doc Only & Not Relevant
+    │       → Stop & Warn User
+    │
+    ├── Hybrid Mode & Not Relevant
+    │       → Web Search
+    │       → Content Writer
+    │
+    └── Relevant
+            → Content Writer
+                    ↓
+            Quality Reviewer
+                    ├── FAIL → Back to Planner (Self-Correction Loop)
+                    └── PASS → Final Output
 
 ---
 
