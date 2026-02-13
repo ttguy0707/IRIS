@@ -31,28 +31,28 @@
 ```mermaid
 graph TD
 
-User((User)) -->|Query, Search Mode, Session ID| Router{Intent Router}
+  user((User)) -->|Query, Search Mode, Session ID| router{Intent Router}
 
-Router -->|NEW_TOPIC| Planner[Task Planner]
-Router -->|REFINE| Refiner[Content Refiner]
+  router -->|NEW_TOPIC| planner[Task Planner]
+  router -->|REFINE| refiner[Content Refiner]
 
-Planner --> Researcher[Deep Researcher]
-Researcher -->|Relevance Check: Fail| Grader{Doc Relevant?}
+  planner --> researcher[Deep Researcher]
+  researcher -->|Relevance Check: Fail| grader{Doc Relevant?}
 
-Grader -->|No (Doc Only)| stop_node
-Grader -->|No (Hybrid)| web_node
-Grader -->|Yes| Writer[Content Generation]
+  grader -->|No (Doc Only)| stop_node
+  grader -->|No (Hybrid)| web_node
+  grader -->|Yes| writer[Content Generation]
 
-stop_node[Halt and warn user]
-web_node[Fallback to web search]
+  stop_node[Halt and warn user]
+  web_node[Fallback to web search]
 
-web_node --> Writer
+  web_node --> writer
 
-Writer --> Reviewer[Quality Reviewer]
-Reviewer -->|FAIL| Planner
-Reviewer -->|PASS| End((END))
+  writer --> reviewer[Quality Reviewer]
+  reviewer -->|FAIL| planner
+  reviewer -->|PASS| end_node((END))
 
-Refiner --> End
+  refiner --> end_node
 
 ```
 
