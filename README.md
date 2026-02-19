@@ -1,6 +1,15 @@
 # 🌐 IRIS (Intelligent Research Insight System)
 
 > **IRIS** 是一个基于 **Agentic Workflow（智能体工作流）** 的自动化深度调研与报告生成系统。它摒弃了传统单向 RAG（检索增强生成）的线性问答模式，通过构建多节点状态机（State Machine），实现了从**意图识别、路径规划、动态检索（混合/本地）、深度撰写到自我审查与局部微调**的全自动闭环。
+### 演示截图 (Demo Screenshots)
+
+#### 1. 系统主界面
+![IRIS 主界面](./docs/demo1.jpeg)
+*系统主界面展示，包含对话输入区、文件上传区和响应展示区*
+
+#### 2. 报告生成效果
+![IRIS 报告生成](./docs/demo2.jpeg)
+*系统生成的深度研究报告示例，包含格式化文本、数学公式和图表*
 
 ## ✨ 核心特性 (Key Features)
 
